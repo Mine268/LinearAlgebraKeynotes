@@ -1,0 +1,58 @@
+\documentclass[10pt,b5paper,openany]{book}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{mathpple}
+% \usepackage{upgreek}
+% \usepackage{mathpazo}
+\usepackage{lipsum}
+\usepackage{cite}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{savesym}
+\usepackage{amsfonts}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{fancybox}
+\usepackage{fontspec}
+
+\usepackage{fancyhdr}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{amsmath,amscd}
+\usepackage{geometry}
+\geometry{right=2.5cm,left=2.5cm,top=2.5cm,bottom=2.5cm}
+\pagestyle{fancy} \lhead{mine268}\chead{线性代数keynote}\rhead{copyleft}
+\usepackage{amsmath,amscd}
+\usepackage{bm}
+\usepackage{titlesec}%chapter1修改为第1章
+\renewcommand{\chaptername}{第{\thechapter}章}
+\titleformat{\chapter}[block]{\Huge\bfseries}{\chaptername}{10pt}{\\}
+\usepackage[UTF8]{ctex}
+\makeatletter % `@' now normal "letter"
+\@addtoreset{equation}{section}
+\makeatother  % `@' is restored as "non-letter"
+\renewcommand\theequation{\oldstylenums{\thesection}%
+                   .\oldstylenums{\arabic{equation}}}
+
+\newcommand{\dd}{\mathrm{d}}
+% Theorm, lemma, proof etc
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{thm}{\bfseries Theorem}[section]
+\newtheorem{definition}{\bfseries Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{proof}{Proof}[section]
+
+\title{线性代数Keynote}
+\author{mine268}
+
+\begin{document}
+	\maketitle
+
+	记录学习中存在困惑的地方和重要的性质和定理。
+
+	\include{chapter/chapter1}
+\end{document}

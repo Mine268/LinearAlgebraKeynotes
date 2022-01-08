@@ -1,0 +1,160 @@
+\chapter{矩阵}
+
+\section{矩阵的秩与初等变换}
+
+\subsection{矩阵的秩}
+
+\begin{thm}
+    \label{rank-conservation}
+    一个矩阵用初等行变换化成的的阶梯型矩阵中，其中非零行的数量唯一确定。
+\end{thm}
+
+定理\ref{rank-conservation}说明了初等行变换不改变矩阵的秩，注意这里没有说明初等列变换不改变矩阵的秩，这条性质是通过相抵标准型证明的。（秩的定义见\ref{rank}）
+
+\begin{definition}
+    \label{rank}
+    矩阵$A$用初等行变换化成的阶梯型矩阵中非零行的数目称为矩阵的秩，记作$r(A)$。
+\end{definition}
+
+\subsection{矩阵的初等变换}
+
+矩阵的列变换方式参照矩阵的行变换，两者并称矩阵的初等变换。这里注意一点，我们目前只说明了行变换不改变矩阵的秩，但是并没有说明同时作用行变换和列变换或者单独作用列变换的时候矩阵的秩的不变性。
+
+在引入了列变换的基础上我们可以定义矩阵相抵。
+
+\begin{definition}
+    \label{xiangdi} % 找不到英文啊
+    如果矩阵$A$可以通过有限次初等变换化为$B$，则称$A$相抵于$B$，记作$A\cong B$。
+\end{definition}
+
+容易证明定理\ref{rank-and-xiangdi}。
+
+\begin{thm}
+    \label{rank-and-xiangdi}
+    如果$m\times n$的矩阵$A$有$r(A)=r$，那么矩阵$A$相抵于
+    $$
+    \tilde{B}=\begin{bmatrix}
+        1 & 0 & \cdots & 0 & \cdots & 0 \\
+        0 & 1 & \cdots & 0 & \cdots & 0 \\
+        \vdots & \vdots & & \vdots & & \vdots \\
+        0 & 0 & \cdots & 1 & \cdots & 0 \\
+        0 & 0 & \cdots & 0 & \cdots & 0 \\
+        \vdots & \vdots & & \vdots & & \vdots \\
+        0 & 0 & \cdots & 0 & \cdots & 0 \\
+    \end{bmatrix}_{m\times n}
+    $$
+    上矩阵中含有$1$的行为前$r$行。$\tilde{B}$称为矩阵$A$的相抵标准型。
+\end{thm}
+需要注意一点是定理\ref{rank-and-xiangdi}只说明了矩阵$A$相抵于$\tilde{B}$，并没有排除矩阵$A$相抵于其他非$\tilde{B}$的相抵标准型矩阵的可能性，即这条定理并没有说明相抵标准型的唯一性。
+
+\subsection{初等矩阵}
+
+\begin{definition}
+    \label{elementory-matrix}
+    单位矩阵经过一次初等变换得到的矩阵称为初等矩阵。
+\end{definition}
+
+不难证明定理\ref{elementory-transformation-and-matrix}。
+
+\begin{thm}
+    \label{elementory-transformation-and-matrix}
+    对于$m\times n$的矩阵$A$，有
+    \begin{enumerate}
+        \item 做一次初等行变换等同于左乘一个对应的$m$阶初等矩阵；
+        \item 做一次初等列变换等同于右乘一个对应的$n$阶初等矩阵；
+    \end{enumerate}
+\end{thm}
+
+对于初等矩阵，有如下的重要性质。
+
+\begin{property}
+    \label{elementory-matrix-property}
+    \begin{enumerate}
+        \item 初等举证满秩且初等举证的乘积也是满秩的；
+        \item 对于任意初等举证$P$存在初等举证$Q$使得$PQ=QP=I$。
+    \end{enumerate}
+\end{property}
+
+其中性质\ref{elementory-matrix-property}的1证明如下。
+\begin{proof}
+    \label{proof-1}
+    初等矩阵满秩显然。
+
+    设$s$个初等矩阵$P_1,\cdots P_s$，令$P=P_1\cdots P_s$，从而有$P=P_1\cdots P_sI$，可以看作单位矩阵经过$s$次初等行变换得到矩阵$P$，显然$P$满秩。
+\end{proof}
+
+\begin{remark}
+    可以注意的一点是，证明\ref{proof-1}中无论矩阵$P_i,i=1,\cdots,s$对应的是初等行变换还是初等列变换，都可以等价为初等行变换。即初等行变换和列变换的举证的形式是一致的，产生本质区别的是左乘还是右乘。
+\end{remark}
+
+由满秩矩阵的定义很容易导出定理\ref{full-rank-matrix-and-elementory-matrix}。
+
+\begin{thm}
+    \label{full-rank-matrix-and-elementory-matrix}
+    满秩矩阵可以表示成若干初等矩阵的乘积。
+\end{thm}
+
+进一步地，我们可以推到出一个关于矩阵相抵的充分必要条件如定理\ref{iff-matrix-xiangdi}。
+
+\begin{thm}
+    \label{iff-matrix-xiangdi}
+    有两个$m\times n$矩阵$A,B$，那么$A\cong B$当且仅当存在$m$阶满秩矩阵$P$与$n$阶满秩矩阵$Q$使得$PAQ=B$。
+\end{thm}
+
+在以上的定理完整之后，我们可以给出相抵标准型唯一性的证明，即证明若矩阵$A\cong \tilde{B}_1\wedge A\cong\tilde{B}_2$，其中$\tilde{B}_1,\tilde{B}_2$为相抵标准型则必然有$\tilde{B}_1=\tilde{B}_2$。定理\ref{xiangdi-singular}说明了这一点。
+
+\begin{thm}
+    \label{xiangdi-singular}
+    同型矩阵$A,B$相抵当且仅当$r(A)=r(B)$。
+\end{thm}
+
+定理\ref{xiangdi-singular}证明如下证明\ref{pf-xiangdi-singular}。
+
+\begin{proof}
+    \label{pf-xiangdi-singular}
+    充分性显然。
+
+    必要性证明。设$A\cong B,r(A)=s,r(B)=t$，$A,B$的相抵标准型分别为$C_1,C_2$。于是有$C_1\cong C_2$，那么存在初等矩阵$P_1,\cdots,P_k,Q_1,\cdots,Q_l$使得
+    $$
+    P_k\cdots P_1C_1Q_1\cdots Q_l=C_2
+    $$
+    从而对于$P_i,i=1,\cdots,k$有$P_i'$使得$P_i' P_i=I$，故
+    $$
+    C_1Q_1\cdots Q_l=P_1'\cdots P_k'C_2
+    $$
+    令$Q=Q_1\cdots Q_l,P=P_1'\cdots P_k'$，则$P,Q$满秩且
+    $$
+    PC_2=\begin{bmatrix}
+        P^* & 0
+    \end{bmatrix}=C_1Q=\begin{bmatrix}
+        Q^* \\ 0
+    \end{bmatrix}
+    $$
+    可以推出$p_{ij}=0,i=s+1,\cdots,m;j=1,\cdots,t$且$q_{ij}=0,i=1,\cdots,s;j=t+1,\cdots,n$。此时若假设$r(A)\neq r(B)$，不失一般性，我们假定$t>s$，此时矩阵
+    $$
+    P=\begin{bmatrix}
+        p_{11} & \cdots & p_{1t} & p_{1,t+1} & \cdots & p_{1m} \\
+        \vdots & & \vdots & \vdots & & \vdots \\
+        p_{s1} & \cdots & p_{st} & p_{s,t+1} & \cdots & p_{sm} \\
+        0 & \cdots & 0 & p_{s+1,t+1} & \cdots & p_{s+1,m} \\
+        \vdots & & \vdots & \vdots & & \vdots \\
+        0 & \cdots & 0 & p_{m,t+1} & \cdots & p_{mm} \\
+    \end{bmatrix}
+    $$
+    矩阵可以分为前$s$行和后$m-s$行，对$P$变换为阶梯型$P'$，那么前$s$行变换后得到的非零行的数量小于等于$s$，后$m-s$行经过变换得到的非零行的数量小于等于$\min\{m-s,m-t\}=m-t$行，故$P'$的非零行的数量小于等于$s+m-t$行，由于初等行变换不改变矩阵的秩，所以$r(P)=r(P')\leqslant s+m-t<t+m-t=m$，即$P$降秩，这与$P$的构造矛盾。
+\end{proof}
+
+\begin{remark}
+    由此我们知道，初等变换不改变矩阵的秩，即初等行变换和初等列变换都不改变矩阵的秩。
+\end{remark}
+
+在定理\ref{pf-xiangdi-singular}的基础上，我们可以推导出定理\ref{rank-property}。
+
+\begin{thm}
+    \label{rank-property}
+    对于$m\times n$的矩阵$A$，有
+    \begin{enumerate}
+        \item $r(A)=r(A^T)$；
+        \item $r(A)=r(PA)=r(AQ)=r(PAQ)$，其中$P,Q$分别是$m,n$阶的满秩矩阵。
+    \end{enumerate}
+\end{thm}
