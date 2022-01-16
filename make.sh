@@ -1,0 +1,1 @@
+xelatex note.tex -synctex=1 && xelatex note.tex -synctex=1
