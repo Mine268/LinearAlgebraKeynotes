@@ -1,6 +1,7 @@
 \documentclass[10pt,b5paper,openany]{book}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{booktabs}
 % \usepackage{mathpple}
 % \usepackage{upgreek}
@@ -40,13 +41,15 @@
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\diag}{\mathrm{diag}}
 % Theorm, lemma, proof etc
-\newtheorem{lemma}{引理}[section]
-\newtheorem{thm}{\bfseries 定理}[section]
-\newtheorem{definition}{\bfseries 定义}[section]
-\newtheorem{example}{例子}[section]
-\newtheorem{property}{性质}[section]
-\newtheorem{remark}{注解}[section]
-\newtheorem{proof}{证明}[section]
+\newtheorem{lemma}{\indent 引理}[section]
+\newtheorem{thm}{\indent 定理}[section]
+\newtheorem{definition}{\indent 定义}[section]
+\newtheorem{example}{\indent 例}[section]
+\newtheorem{property}{\indent 性质}[section]
+\newtheorem{remark}{\indent 注解}[section]
+\newtheorem{corollary}{\indent 推论}[section]
+% \newtheorem{proof}{证明}[section]
+\renewcommand{\proofname}{\indent 证明}
 
 \title{线性代数Keynote}
 \author{mine268}
@@ -57,6 +60,7 @@
 	记录学习中存在困惑的地方和重要的性质和定理。
 
 	\include{chapter/chapter1}
+	\include{chapter/chapter2}
 
 	\include{chapter/appendix}
 

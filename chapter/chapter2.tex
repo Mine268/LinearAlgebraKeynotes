@@ -1,0 +1,114 @@
+\chapter{线性方程组}
+
+\section{向量的线性相关性}
+
+\subsection{向量的定义}
+
+\begin{definition}
+    \label{def-vector}
+    由$n$个数$a_1,\cdots,a_n$顺序构成的$n$元有序数组称为$n$元向量。记作
+    \begin{equation}
+        \alpha=(a_1,a_2,\cdots,a_n),\label{eq-vertor-1}
+    \end{equation}
+    $a_i$称为向量$\alpha$的第$a_i,i=1,2,\cdots,n$个分量。(\ref{eq-vertor-1})的形式称为行向量，除了行向量形式之外，向量还可以写成列向量的形式
+    \begin{eqnarray}
+        \alpha=\begin{bmatrix}
+            a_1\\\vdots\\a_n
+        \end{bmatrix}=(a_1,\cdots,a_n)^T.
+    \end{eqnarray}
+\end{definition}
+
+向量的相等、加法、减法、数乘等操作参照矩阵的对应运算，不做赘述。
+
+\subsection{向量的线性相关性}
+
+\begin{definition}
+    \label{def-linear-composition}
+    设$\alpha_1,\cdots,\alpha_m$是$m$个$n$元向量，$k_1,\cdots,k_m$是任意$m$个数，称下列向量
+    \[ \beta=k_1\alpha_1+\cdots+k_m\alpha_m \]
+    是向量组的$\alpha_1,\cdots,\alpha_m$的一个线性组合。此时，也称向量$\beta$可由向量组$\alpha_1,\cdots,\alpha_m$线性表出。
+\end{definition}
+
+\begin{definition}
+    \label{def-linear-relation}
+    设$\alpha_1,\cdots,\alpha_m$是$m$个$n$元向量，若存在$m$个不全为零的数$k_1,\cdots,k_m$使得
+    \begin{equation}
+        k_1\alpha_1+\cdots+k_m\alpha_m=0\label{eq-linear-dependence}
+    \end{equation}
+    则称向量组$\alpha_1,\cdots,\alpha_m$线性相关，否则称为线性无关。
+\end{definition}
+
+\begin{remark}
+    平行（共线）是描述两个向量之间关系的概念，而共面是描述多个向量之间关系的概念，而线性相关（线性无关）则是一个更高层次的概念。
+\end{remark}
+
+\begin{remark}
+    线性相关性是从共线、共面等概念引申出来的应用于更高维向量的概念。在二维空间中，向量$\gamma,\eta$的共线即表示存在两个不全为零的实数$k_1,k_2$使得$k_1\gamma+k_2\eta=0$（这里隐含地说明了为什么零向量共线于任何向量）；在三维空间中，向量$\gamma,\eta,\varepsilon$共面即表示存在三个不全为零的实数$k_1,k_2,k_3$使得$k_1\gamma+k_2\eta+k_3\varepsilon=0$。
+\end{remark}
+
+\begin{definition}
+    \label{def-linear-represent}
+    设$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$是两组$n$元向量，若每个$\alpha_i,i=1,2,\cdots,s$均可以由$\beta_1,\cdots,\beta_t$线性表出，则称向量组$\alpha_1,\cdots,\alpha_s$可以由向量组$\beta_1,\cdots,\beta_t$线性表出。若向量组$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$可以相互线性表出，则称$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$等价，记作
+    \[ \{\alpha_1,\cdots,\alpha_s\}\cong\{\beta_1,\cdots,\beta_t\} \]
+\end{definition}
+
+向量组的等价是一种等价关系，拥有自反性、对称性和传递性。
+
+关于向量组线性相关性，有一个重要的充分定理。
+
+\begin{thm}
+    \label{thm-important-linear-dependence}
+    设$\alpha_1,\cdots,\alpha_s$是一组$n$元向量。若存在另一组$n$元向量$\beta_1,\cdots,\beta_t$有
+    \begin{enumerate}
+        \item $\alpha_1,\cdots,\alpha_s$可以由向量组$\beta_1,\cdots,\beta_t$线性表出；
+        \item $s>t$，
+    \end{enumerate}
+    则向量组$\alpha_1,\cdots,\alpha_s$线性相关。
+\end{thm}
+
+定理的逆否推论如下
+
+\begin{corollary}
+    \label{thm-important-linear-independence}
+    设$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$是两组$n$元向量，若存在
+    \begin{enumerate}
+        \item $\alpha_1,\cdots,\alpha_s$可以由向量组$\beta_1,\cdots,\beta_t$线性表出；
+        \item $\alpha_1,\cdots,\alpha_s$线性无关，
+    \end{enumerate}
+    则$s\leqslant t$。
+\end{corollary}
+
+定理\ref{thm-important-linear-dependence}的证明如下，由于定理\ref{thm-important-linear-independence}是前者的逆否，只要证明了前者，则后者正确性显然。证明如下。
+
+\begin{proof}
+    \label{proof-important-linear-dependence}
+
+    由条件1可知，存在$c_{ij},i=1,\cdots,s;j=1,\cdots,t$使得
+    \[ \alpha_i=c_{i1}\beta_1+\cdots+c_{it}\beta_t \]
+    设
+    \[ \gamma_i=(c_{i1},\cdots,c_{it}),i=1,\cdots,s \]
+    则$\gamma_1,\cdots,\gamma_s$为$s$个$t$元向量。
+
+    由于$s>t$，根据引理\ref{lenma-vector-linear-dependence}，$\gamma_1,\cdots,\gamma_s$线性相关，存在不全为零的数$k_1,\cdots,k_s$使得
+    \[ k_1\gamma_1+\cdots+k_s\gamma_s=0 \]
+    即
+    \[ k_1c_{1j}+\cdots+k_sc_{sj}=\sum_{i=1}^sk_ic_{ij}=0,j=1,\cdots,s \]
+    又因为
+    \begin{equation*}
+        \begin{aligned}
+            \sum_{i=1}^sk_i\alpha_i
+            =& \sum_{i=1}^sk_i\left(\sum_{j=1}^tc_{ij}\beta_j\right) \\
+            =& \sum_{i=1}^s\sum_{j=1}^tk_ic_{ij}\beta_j \\
+            =& \sum_{j=1}^t\sum_{i=1}^sk_ic_{ij}\beta_j \\
+            =& \sum_{j=1}^t0\beta_j=0
+        \end{aligned}
+    \end{equation*}
+    且$k_1,\cdots,k_t$不全为零，所以$\alpha_1,\cdots,\alpha_s$线性相关。
+\end{proof}
+
+\begin{lemma}
+    \label{lenma-vector-linear-dependence}
+    $m$个$n$元向量（$m>n$）线性相关。
+\end{lemma}
+
+引理\ref{lenma-vector-linear-dependence}的证明就是将向量线性组合展开成为方程组，观察到方程组未知数个数大于方程个数，直接得出方程组存在非零解，从而认定，向量线性相关。
