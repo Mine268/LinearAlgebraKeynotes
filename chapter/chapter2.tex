@@ -46,6 +46,18 @@
     线性相关性是从共线、共面等概念引申出来的应用于更高维向量的概念。在二维空间中，向量$\gamma,\eta$的共线即表示存在两个不全为零的实数$k_1,k_2$使得$k_1\gamma+k_2\eta=0$（这里隐含地说明了为什么零向量共线于任何向量）；在三维空间中，向量$\gamma,\eta,\varepsilon$共面即表示存在三个不全为零的实数$k_1,k_2,k_3$使得$k_1\gamma+k_2\eta+k_3\varepsilon=0$。
 \end{remark}
 
+基于线性相关和线性无关的定义，可以到处一些基本结论（证明从略）。
+
+\begin{thm}
+    \label{thm-iff-vector-group-dependence}
+    向量组$\alpha_1,\cdots,\alpha_m$线性相关当且仅当至少存在$\alpha_i,1\leqslant i\leqslant m$使可以由其余的向量线性表出。
+\end{thm}
+
+\begin{thm}
+    \label{thm-independence-vec-grp-append}
+    向量组$\alpha_1,\cdots,\alpha_m$线性无关，向量组$\beta,\alpha_1,\cdots,\alpha_m$，则$\beta$可以由$\alpha_1,\cdots,\alpha_m$线性表出，且表示法唯一。
+\end{thm}
+
 \begin{definition}
     \label{def-linear-represent}
     设$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$是两组$n$元向量，若每个$\alpha_i,i=1,2,\cdots,s$均可以由$\beta_1,\cdots,\beta_t$线性表出，则称向量组$\alpha_1,\cdots,\alpha_s$可以由向量组$\beta_1,\cdots,\beta_t$线性表出。若向量组$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$可以相互线性表出，则称$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$等价，记作
@@ -69,7 +81,7 @@
 定理的逆否推论如下
 
 \begin{corollary}
-    \label{thm-important-linear-independence}
+    \label{col-important-linear-independence}
     设$\alpha_1,\cdots,\alpha_s$与$\beta_1,\cdots,\beta_t$是两组$n$元向量，若存在
     \begin{enumerate}
         \item $\alpha_1,\cdots,\alpha_s$可以由向量组$\beta_1,\cdots,\beta_t$线性表出；
@@ -78,7 +90,7 @@
     则$s\leqslant t$。
 \end{corollary}
 
-定理\ref{thm-important-linear-dependence}的证明如下，由于定理\ref{thm-important-linear-independence}是前者的逆否，只要证明了前者，则后者正确性显然。证明如下。
+定理\ref{thm-important-linear-dependence}的证明如下，由于定理\ref{col-important-linear-independence}是前者的逆否，只要证明了前者，则后者正确性显然。证明如下。
 
 \begin{proof}
     \label{proof-important-linear-dependence}
@@ -112,3 +124,89 @@
 \end{lemma}
 
 引理\ref{lenma-vector-linear-dependence}的证明就是将向量线性组合展开成为方程组，观察到方程组未知数个数大于方程个数，直接得出方程组存在非零解，从而认定，向量线性相关。
+
+\section{向量组的秩}
+
+\subsection{向量组的秩}
+
+对于线性相关的向量组，秩可以描述其线性相关性的强弱程度。由此我们提出秩的概念。
+
+\begin{definition}
+    \label{def-vector-group-rank}
+    设向量组$\alpha_1,\cdots,\alpha_m$有$m$个$n$元向量。其中存在$r$个向量线性无关，但是任意的$r+1$个向量都线性相关，则称向量组$\alpha_1,\cdots,\alpha_m$的值为$r$，记作$r\{\alpha_1,\cdots,\alpha_m\}=r$。
+\end{definition}
+
+向量组的秩可以来衡量向量组的线性相关性，通过其定义，容易给出如下充要条件。
+
+\begin{thm}
+    \label{thm-vector-group-dependence-rank}
+    向量组$\alpha_1,\cdots,\alpha_m$线性相关当且仅当$r\{\alpha_1,\cdots,\alpha_m\}<m$。
+\end{thm}
+
+\begin{remark}
+    向量组的秩为$r$并不意味着向量组中任取$r$个向量都线性无关，例如向量组
+    \[
+        a=(1,1,0,0),b=(1,1,0,0),c=(0,1,0,0),d=(0,1,0,0)
+    \]
+    其秩为$2$，但是若取部分组$a,b$，显然不是线性无关的。
+\end{remark}
+
+为了确定向量组的秩，我们引入一些相关的概念。
+
+\begin{definition}
+    \label{def-max-independence-group}
+    设向量组$\alpha_1,\cdots,\alpha_m$的秩为$r$，则$\alpha_1,\cdots,\alpha_m$中任意$r$个线性无关的向量都称为其极大线性无关部分组，简称极大无关组。
+\end{definition}
+
+定义了极大无关组之后，我们可以证明向量组的所有极大无关组都是等价的。
+
+\begin{property}
+    \label{property-equvilent-mig}
+    向量组与其任意一极大无关组等价。
+\end{property}
+
+\begin{proof}
+    设向量组$\alpha_1,\cdots,\alpha_m$的极大无关组为$\alpha_{i_1},\cdots,\alpha_{i_r}$，显然后者可以被前者线性表出，只需证明前者可以被后者线性表出即可。
+
+    对于向量组$\alpha_1,\cdots,\alpha_m$中的任意向量$\alpha_k$，若$\alpha_k\in\{\alpha_{i_1},\cdots,\alpha_{i_r}\}$，那么可以被其线性标出。否则，向量组$\{\alpha_k,\alpha_{i_1},\cdots,\alpha_{i_r}\}$线性相关，根据定理\ref{thm-independence-vec-grp-append}，$\alpha_k$被向量组$\alpha_{i_1},\cdots,\alpha_{i_r}$唯一地线性标出。所以$\alpha_1,\cdots,\alpha_m$可以被$\alpha_{i_1},\cdots,\alpha_{i_r}$线性表出。
+
+    故向量组与其任意一极大无关组等价。
+\end{proof}
+
+更进一步地，我们有如下定理。
+
+\begin{thm}
+    \label{thm-rank-decrease-by-linear-composition}
+    若向量组$\alpha_1,\cdots,\alpha_s$可以由$\beta_1,\cdots,\beta_t$线性表出，则称向量组
+    \[
+        r\{\alpha_1,\cdots,\alpha_s\}\leqslant r\{\beta_1,\cdots,\beta_t\}
+    \]
+\end{thm}
+
+\begin{proof}
+    设向量组$\alpha_1,\cdots,\alpha_s;\beta_1,\cdots,\beta_t$的极大无关组分别为$\alpha_{i_1},\cdots,\alpha_{i_r}$和$\beta_{i_1},\cdots,\beta_{i_p}$。根据定理\ref{property-equvilent-mig}，从而有
+    \[
+        \begin{aligned}
+            \{\alpha_{i_1},\cdots,\alpha_{i_r}\}\cong&\{\alpha_1,\cdots,\alpha_s\} \\
+            \{\beta_1,\cdots,\beta_t\}\cong&\{\beta_{i_1},\cdots,\beta_{i_p}\}
+        \end{aligned}
+    \]
+
+    而$\beta_1,\cdots,\beta_t$又可以线性表出$\alpha_1,\cdots,\alpha_s$，所以$\beta_{i_1},\cdots,\beta_{i_p}$线性表出$\alpha_{i_1},\cdots,\alpha_{i_r}$，根据推论\ref{col-important-linear-independence}有$r\leqslant p$，从而有
+    \[
+        r\{\alpha_1,\cdots,\alpha_s\}\leqslant\{\beta_1,\cdots,\beta_t\}
+    \]
+\end{proof}
+
+极大无关组拥有如下的等价定义。由此极大无关组的定义可以参见定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}。
+
+\begin{definition}
+    \label{def-max-independence-group-2}
+    设$\alpha_{i_1},\cdots,\alpha_{i_r}$是向量组$\alpha_1,\cdots,\alpha_m$的一个部分组，若$\alpha_{i_1},\cdots,\alpha_{i_r}$线性无关且每个$\alpha_j(j=1,2,\cdots,m)$均可以由$\alpha_{i_1},\cdots,\alpha_{i_r}$线性表出，则$\alpha_{i_1},\cdots,\alpha_{i_r}$是向量组$\alpha_1,\cdots,\alpha_m$的极大无关组。
+\end{definition}
+
+等价性证明容易给出。只需要证明对于一个向量组，根据定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}定义出向量组总是相等的即可。
+
+\begin{proof}
+    设向量组$\alpha_1,\cdots,\alpha_m$，根据定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}定义出的极大无关组分别是$V_1,V_2$，根据定义\ref{def-max-independence-group-2}，显然有$V_2\subseteq V_1$。反之，根据定义\ref{def-max-independence-group}和性质\ref{property-equvilent-mig}，也能有$V_1\subseteq V_2$。所以有$V_1=V_2$，故定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}等价。
+\end{proof}
