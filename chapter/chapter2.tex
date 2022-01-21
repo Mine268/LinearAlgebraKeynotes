@@ -136,13 +136,6 @@
     设向量组$\alpha_1,\cdots,\alpha_m$有$m$个$n$元向量。其中存在$r$个向量线性无关，但是任意的$r+1$个向量都线性相关，则称向量组$\alpha_1,\cdots,\alpha_m$的值为$r$，记作$r\{\alpha_1,\cdots,\alpha_m\}=r$。
 \end{definition}
 
-向量组的秩可以来衡量向量组的线性相关性，通过其定义，容易给出如下充要条件。
-
-\begin{thm}
-    \label{thm-vector-group-dependence-rank}
-    向量组$\alpha_1,\cdots,\alpha_m$线性相关当且仅当$r\{\alpha_1,\cdots,\alpha_m\}<m$。
-\end{thm}
-
 \begin{remark}
     向量组的秩为$r$并不意味着向量组中任取$r$个向量都线性无关，例如向量组
     \[
@@ -150,6 +143,13 @@
     \]
     其秩为$2$，但是若取部分组$a,b$，显然不是线性无关的。
 \end{remark}
+
+向量组的秩可以来衡量向量组的线性相关性，通过其定义，容易给出如下充要条件。
+
+\begin{thm}
+    \label{thm-vector-group-dependence-rank}
+    向量组$\alpha_1,\cdots,\alpha_m$线性相关当且仅当$r\{\alpha_1,\cdots,\alpha_m\}<m$。
+\end{thm}
 
 为了确定向量组的秩，我们引入一些相关的概念。
 
@@ -177,7 +177,7 @@
 
 \begin{thm}
     \label{thm-rank-decrease-by-linear-composition}
-    若向量组$\alpha_1,\cdots,\alpha_s$可以由$\beta_1,\cdots,\beta_t$线性表出，则称向量组
+    若向量组$\alpha_1,\cdots,\alpha_s$可以由$\beta_1,\cdots,\beta_t$线性表出，则
     \[
         r\{\alpha_1,\cdots,\alpha_s\}\leqslant r\{\beta_1,\cdots,\beta_t\}
     \]
