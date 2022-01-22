@@ -210,3 +210,133 @@
 \begin{proof}
     设向量组$\alpha_1,\cdots,\alpha_m$，根据定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}定义出的极大无关组分别是$V_1,V_2$，根据定义\ref{def-max-independence-group-2}，显然有$V_2\subseteq V_1$。反之，根据定义\ref{def-max-independence-group}和性质\ref{property-equvilent-mig}，也能有$V_1\subseteq V_2$。所以有$V_1=V_2$，故定义\ref{def-max-independence-group}和定义\ref{def-max-independence-group-2}等价。
 \end{proof}
+
+\subsection{向量组的秩与矩阵秩的关系}
+
+对于矩阵可以按照行向量和列向量的方式进行划分，即
+
+\[
+    A=[\gamma_i,\cdots,\gamma_n]=\begin{bmatrix}
+        \alpha_1\\\vdots\\\alpha_m
+    \end{bmatrix}
+\]
+
+为了说明两者之间的关系，我们一步一步来。对于矩阵的秩与其行向量的秩，我们有如下关系
+
+\begin{thm}
+    \label{thm-rank-matrix-row-vector}
+    阶梯形矩阵的秩等于其行向量组的秩。
+\end{thm}
+
+\begin{proof}
+    取任意一个秩为$r$的$m\times n$的阶梯形矩阵$B$如下
+    \[
+        B=\begin{bmatrix}
+            b_{11} & b_{12} & \cdots & b_{1r} & \cdots & b_{1n} \\
+            0      & b_{22} & \cdots & b_{2r} & \cdots & b_{2n} \\
+            \vdots & \vdots &        & \vdots &        & \vdots \\
+            0      & 0      & \cdots & b_{rr} & \cdots & b_{rn} \\
+            0      & 0      & \cdots & 0      & \cdots & 0      \\
+            \vdots & \vdots &        & \vdots &        & \vdots \\
+            0      & 0      & \cdots & 0      & \cdots & 0      \\
+        \end{bmatrix}
+    \]
+    其中$b_{ii}.i=1,2,\cdots,r$为非零主元。设
+    \[
+        \gamma_i=\left\{
+        \begin{aligned}
+            &(0,\cdots,0,b_{ii},b_{i,i+1},b_{in}),i=1,2,\cdots,r\\
+            &(0,0,\cdots,0),i=r+1,\cdots,m
+        \end{aligned}
+        \right.
+    \]
+    为矩阵$B$的行向量。那么向量组$\gamma_1,\cdots,\gamma_m$的极大无关组显然为$\gamma_1,\cdots,\gamma_r$，秩为$r$。
+
+    故，阶梯形矩阵的秩等于其行向量组的秩。
+\end{proof}
+
+定理\ref{thm-rank-matrix-row-vector}证明了阶梯形矩阵的秩与其对应的行向量组的秩之间的关系。由于阶梯形矩阵是由原矩阵通过初等行变换而来，所以我们接着说明矩阵的初等行变换与其对应的行向量组的秩之间的关系。
+
+\begin{thm}
+    \label{thm-rank-elem-row-trans-to-vec-grp}
+    矩阵的初等行变换不改变行向量的秩。
+\end{thm}
+
+\begin{proof}
+    $m\times n$矩阵$A$的行向量组为$\gamma_1,\cdots,\gamma_m$，做一次初等行变换为矩阵$B$的行向量组为$\beta_1,\cdots,\beta_m$。显然，$\beta_1,\cdots,\beta_m$可以被$\gamma_1,\cdots,\gamma_m$线性表出，根据定理\ref{thm-rank-decrease-by-linear-composition}，有
+    \[
+        r\{\gamma_1,\cdots,\gamma_m\}\geqslant r\{\beta_1,\cdots,\beta_m\}
+    \]
+    由于初等行变换可逆，故存在初等行变换可以将$B$还原为$A$，同理
+    \[
+        r\{\gamma_1,\cdots,\gamma_m\}\leqslant r\{\beta_1,\cdots,\beta_m\}
+    \]
+
+    综上所述
+    \[
+        r\{\gamma_1,\cdots,\gamma_m\}=r\{\beta_1,\cdots,\beta_m\}
+    \]
+\end{proof}
+
+根据如下定理，我们可以认定，矩阵的秩等于其行向量组的秩，也等于其列向量组的秩。
+
+\begin{thm}
+    \label{thm-matrix-rank-is-vec-grp-rank}
+    矩阵的秩等于其行向量组的秩，也等于其列向量组的秩。
+\end{thm}
+
+\begin{proof}
+    对于任意$m\times n$矩阵$A$，其行向量组为$\alpha_1,\cdots,\alpha_n$。矩阵$A$经过初等行变换变换为阶梯形矩阵$B$，其行向量组为$\beta_1,\cdots,\beta_n$。根据定理\ref{thm-rank-matrix-row-vector}，$r(B)=r\{\beta_1,\cdots,\beta_n\}$。由于初等行变换不改变矩阵的秩和行向量组的秩（定理\ref{rank-conservation}和定理\ref{thm-rank-elem-row-trans-to-vec-grp}），所以$r(A)=r\{\alpha_1,\cdots,\alpha_n\}$。
+
+    设矩阵$A$的列向量为$\gamma_1,\cdots,\gamma_m$，同理有$r(A^T)=r\{\gamma_1,\cdots,\gamma_m\}$。根据定理\ref{rank-property}，从而有
+    \[ r(A)=r(A^T)=r\{\gamma_1,\cdots,\gamma_m\} \]
+
+    由此得出结论，矩阵的秩等于其行向量组的秩，也等于其列向量组的秩。
+\end{proof}
+
+容易得出如下的定理。
+
+\begin{thm}
+    \label{thm-matrix-invertiable-iff-vec-independence}
+    设$A$为方阵，则$A$是可逆矩阵的充分必要条件为$A$的行（列）向量组线性无关。
+\end{thm}
+
+一种求向量组的极大无关组的方法如下。
+
+设一组$n$元列向量$\alpha_1,\cdots,\alpha_m$，以其为列构造矩阵$A$，将$A$用初等行变换变换为阶梯型矩阵$B$
+
+\[
+    B=\begin{bmatrix}
+        0 & \cdots & 0 & b_{1j_1} & \cdots & b_{1j_2} & \cdots & b_{1j_r} & \cdots & b_{1m} \\
+        0 & \cdots & 0 & 0 & \cdots & b_{2j_2} & \cdots & b_{2j_r} & \cdots & b_{2m} \\
+        \vdots&&\vdots & \vdots && \vdots &        & \vdots &        & \vdots \\
+        0 & \cdots & 0 & 0 & \cdots & 0      & \cdots & b_{rj_r} & \cdots & b_{rm} \\
+        0 & \cdots & 0 & 0 & \cdots & 0      & \cdots & 0      & \cdots & 0      \\
+        \vdots&&\vdots & \vdots && \vdots &        & \vdots &        & \vdots \\
+        0 & \cdots & 0 & 0 & \cdots & 0      & \cdots & 0      & \cdots & 0      \\
+    \end{bmatrix}
+\]
+
+其中$b_{1j_1},\cdots,b_{rj_r}$为$B$的非零主元，可以断言向量组$\alpha_1,\cdots,\alpha_m$的秩为$r$，且$\alpha_{j_1},\cdots,\alpha_{j_r}$是一个极大无关组。这是显然的，因为以$\alpha_{j_1},\cdots,\alpha_{j_r}$为列向量构造的矩阵$A'$在同样的初等行变换得到的阶梯形矩阵$B'$为
+
+\[
+    B'=\begin{bmatrix}
+        b_{1j_1} & b_{1j_2} & \cdots & b_{1j_r} \\
+        0 & b_{2j_2} & \cdots & b_{2j_r} \\
+        \vdots & \vdots &  & \vdots \\
+        0 & 0 & \cdots & b_{rj_r} \\
+        0 & 0 & \cdots & 0 \\
+        \vdots & \vdots & & \vdots \\
+        0 & 0 & \cdots & 0
+    \end{bmatrix}
+\]
+
+其中$b_{1j_1},\cdots,b_{rj_r}$为$B'$的主元，由此得到向量组$\alpha_{j_1},\cdots,\alpha_{j_r}$秩为$r$，线性无关。重新整理一下证明思路，由于$B$的秩为$r$，所以我们可以得出向量组$\alpha_1,\cdots,\alpha_m$的秩为$r$（矩阵的秩等于行、列向量组的秩），为了找到向量组$\alpha_1,\cdots,\alpha_m$中的极大无关组，我们按照阶梯形矩阵的特征挑选对应的向量，这些向量可以证明为线性无关的，所以挑选出的向量组$\alpha_{j_1},\cdots,\alpha_{j_r}$就是线性无关组。
+
+\begin{thm}
+    \label{thm-mat-rank-decrease-through-multiplication}
+    设$A$为$m\times p$矩阵，$B$为$p\times n$矩阵，则
+    \[ r(AB)=\min\{r(A),r(B)\} \]
+\end{thm}
+
+可以利用定理\ref{thm-rank-decrease-by-linear-composition}证明，证明细节从略。
